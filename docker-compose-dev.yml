@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  ## USERS SERVICE
+  users:
+    container_name: users
+    build:
+      context: ./backend/users
+      dockerfile: Dockerfile-dev
+    volumes:
+      - './backend/users:/usr/src/app'
+    ports:
+      - 5001:5000
+    environment:
+      - FLASK_APP=project/__init__.py
+      - FLASK_DEBUG=1
+      - APP_SETTINGS=project.config.DevConfig
