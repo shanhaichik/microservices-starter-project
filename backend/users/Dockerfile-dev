@@ -1,5 +1,9 @@
 FROM python:3.6.4
 
+RUN sed -i'' 's/archive\.ubuntu\.com/us\.archive\.ubuntu\.com/' /etc/apt/sources.list
+RUN apt-get -y update
+RUN apt-get install -yqq --no-install-recommends netcat && apt-get -q clean
+
 # set working directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -10,8 +14,10 @@ COPY ./requirements.txt /usr/src/app/requirements.txt
 # install requirements
 RUN pip install -r requirements.txt
 
+COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
+
 # add app
 COPY . /usr/src/app
 
 # run server
-CMD python manage.py run -h 0.0.0.0
+CMD ["./entrypoint.sh"]
