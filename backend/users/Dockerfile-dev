@@ -1,7 +1,7 @@
 FROM python:3.6.4
 
 RUN sed -i'' 's/archive\.ubuntu\.com/us\.archive\.ubuntu\.com/' /etc/apt/sources.list
-RUN apt-get -y update
+RUN apt-get update -yqq
 RUN apt-get install -yqq --no-install-recommends netcat && apt-get -q clean
 
 # set working directory
