@@ -1,5 +1,4 @@
 import os
-import datetime
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
@@ -28,5 +27,5 @@ class User(db.Model):
 def ping():
     return jsonify({
         'status': 'success',
-        'message': 'pong!!!'
+        'message': 'pong!!'
     })
