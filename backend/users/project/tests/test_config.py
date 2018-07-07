@@ -8,7 +8,7 @@ from project import app
 
 class TestDevelopmentConfig(TestCase):
     def create_app(self):
-        app.config.from_object('project.config.DevelopConfig')
+        app.config.from_object('project.config.DevConfig')
         return app
 
 
