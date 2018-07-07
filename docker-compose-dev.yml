@@ -7,8 +7,6 @@ services:
     build:
       context: ./backend/users
       dockerfile: Dockerfile-dev
-    volumes:
-      - './backend/users:/usr/src/app'
     ports:
       - 5001:5000
     environment:
