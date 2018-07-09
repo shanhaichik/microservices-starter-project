@@ -10,6 +10,7 @@ services:
     ports:
       - 5001:5000
     environment:
+      - FLASK_DEBUG=1
       - APP_SETTINGS=project.config.DevConfig
       - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
