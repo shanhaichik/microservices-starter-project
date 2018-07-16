@@ -11,3 +11,13 @@ run users python manage.py seed_db
 
 
 docker system prune -a
+
+##PROD
+docker-machine create --driver amazonec2
+
+docker-compose -f docker-compose-prod.yml run users python manage.py recreate_db
+
+docker-compose -f docker-compose-prod.yml run users python manage.py seed_db
+
+
+docker-machine ls -t 20

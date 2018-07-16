@@ -11,8 +11,8 @@ services:
       - 5001:5000
     environment:
       - FLASK_DEBUG=1
-      - APP_SETTINGS=project.config.DevConfig
-      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_dev
+      - APP_SETTINGS=project.config.ProdConfig
+      - DATABASE_URL=postgres://postgres:postgres@users-db:5432/users_prod
       - DATABASE_TEST_URL=postgres://postgres:postgres@users-db:5432/users_test
     depends_on:
       - users-db
