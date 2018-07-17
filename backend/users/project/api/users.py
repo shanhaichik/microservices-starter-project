@@ -6,6 +6,7 @@ from project.api.models import User
 
 users_blueprint = Blueprint('users', __name__, template_folder='./templates')
 
+
 @users_blueprint.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -15,6 +16,7 @@ def index():
         db.session.commit()
     users = User.query.all()
     return render_template('index.html', users=users)
+
 
 @users_blueprint.route('/users/ping', methods=['GET'])
 def ping():
@@ -52,7 +54,6 @@ def add_user():
     except exc.IntegrityError as e:
         db.session.rollback()
         return jsonify(response_object), 400
-
 
 
 @users_blueprint.route('/users/<user_id>', methods=['GET'])
