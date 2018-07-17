@@ -26,3 +26,5 @@ docker-machine ls -t 20
 docker-compose -f docker-compose-dev.yml exec users-db psql -U postgres
 
 docker-compose -f docker-compose-dev.yml run users flake8 project
+
+ eval $(docker-machine env -u)
