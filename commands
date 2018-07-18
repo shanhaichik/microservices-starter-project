@@ -30,3 +30,9 @@ docker-compose -f docker-compose-dev.yml run users flake8 project
  eval $(docker-machine env -u)
 
  docker-compose -f docker-compose-dev.yml logs -f
+
+
+
+ docker build -f Dockerfile-prod -t "test" ./ \
+--build-arg NODE_ENV=development \
+--build-arg REACT_APP_USERS_SERVICE_URL=http://DOCKER_MACHINE_IP
