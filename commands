@@ -1,13 +1,13 @@
 docker-compose -f docker-compose-dev.yml up -d --build
 
 docker-compose -f docker-compose-dev.yml \
-run users python manage.py recreate_db
+exec users python manage.py recreate_db
 
 docker-compose -f docker-compose-dev.yml \
-run users python manage.py test
+exec users python manage.py test
 
 docker-compose -f docker-compose-dev.yml \
-run users python manage.py seed_db
+exec users python manage.py seed_db
 
 
 docker system prune -a
@@ -36,3 +36,11 @@ docker-compose -f docker-compose-dev.yml run users flake8 project
  docker build -f Dockerfile-prod -t "test" ./ \
 --build-arg NODE_ENV=development \
 --build-arg REACT_APP_USERS_SERVICE_URL=http://DOCKER_MACHINE_IP
+
+##Migrate
+docker-compose -f docker-compose-dev.yml exec users python manage.py db init
+docker-compose -f docker-compose-dev.yml exec users python manage.py db migrate
+docker-compose -f docker-compose-dev.yml exec users python manage.py db upgrade
+
+docker-compose -f docker-compose-dev.yml \ 
+run users python manage.py db init
